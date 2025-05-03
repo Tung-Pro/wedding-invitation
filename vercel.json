@@ -1,0 +1,20 @@
+{
+    "version": 2,
+    "buildCommand": "bun run build",
+    "outputDirectory": "dist",
+    "github": {
+        "enabled": true
+    },
+    "builds": [
+        {
+            "src": "package.json",
+            "use": "@vercel/static-build"
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "/"
+        }
+    ]
+}
