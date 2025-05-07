@@ -39,48 +39,55 @@ export default function Wishes() {
         },
         {
             "id": 2,
+            "name": "Nguyễn Minh Hiếu",
+            "message": "Chúc anh chị hạnh phúc nhé, from Tung's friend with love <3",
+            "timestamp": "2025-05-07T10:00:00Z",
+            "attending": "attending"
+        },
+        {
+            "id": 3,
             "name": "Nguyễn Văn Tùng",
             "message": "Anh trai à, chúc anh và chị dâu trăm năm hạnh phúc, luôn yêu thương và đồng hành cùng nhau! 🎉",
             "timestamp": "2025-05-01T10:00:00Z",
             "attending": "attending"
         },
         {
-            "id": 3,
+            "id": 4,
             "name": "Nguyễn Phi Long",
             "message": "Chúc anh chị một hành trình hôn nhân ngập tràn niềm vui, mãi mãi bền vững và hạnh phúc!❤️",
             "timestamp": "2025-05-01T11:00:00Z",
             "attending": "attending"
         },
         {
-            "id": 4,
+            "id": 5,
             "name": "Nguyễn Thành Nam",
             "message": "Ông bạn thân, chúc mày và cô dâu một đời viên mãn, luôn cười tươi và hạnh phúc nhé! 🎈",
             "timestamp": "2025-05-01T12:00:00Z",
             "attending": "attending"
         },
         {
-            "id": 5,
+            "id": 6,
             "name": "Hoàng Trọng Vinh",
             "message": "Chúc anh chị một cuộc sống hôn nhân ngọt ngào, mãi mãi bên nhau và hạnh phúc ngập tràn! 🌸",
             "timestamp": "2025-05-01T13:00:00Z",
             "attending": "attending"
         },
         {
-            "id": 6,
+            "id": 7,
             "name": "Nguyễn Văn Hiến",
             "message": "Con trai bố, chúc con và con dâu luôn yêu thương, tôn trọng nhau và xây dựng gia đình hạnh phúc! 🙏",
             "timestamp": "2025-05-01T14:00:00Z",
             "attending": "attending"
         },
         {
-            "id": 7,
+            "id": 8,
             "name": "Nguyễn Thị Huệ",
             "message": "Con trai mẹ, chúc hai con một đời an yên, hạnh phúc và luôn trân trọng nhau! 💖",
             "timestamp": "2025-05-01T15:00:00Z",
             "attending": "attending"
         },
         {
-            "id": 8,
+            "id": 9,
             "name": "Hoàng Trọng Công",
             "message": "Chúc hai anh chị một cuộc hôn nhân tràn đầy yêu thương, niềm vui và mãi mãi bền vững! 🎊",
             "timestamp": "2025-05-01T16:00:00Z",
