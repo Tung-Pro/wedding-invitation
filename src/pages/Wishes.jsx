@@ -13,7 +13,7 @@ import {
     XCircle,
     HelpCircle,
 } from 'lucide-react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { formatEventDate } from '@/lib/formatEventDate';
 
 export default function Wishes() {
@@ -22,6 +22,8 @@ export default function Wishes() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [attendance, setAttendance] = useState('');
     const [isOpen, setIsOpen] = useState(false);
+    const [wishesFirstRow, setWishesFirstRow] = useState([]);
+    const [wishesSecondRow, setWishesSecondRow] = useState([]);
 
     const options = [
         { value: 'ATTENDING', label: 'Vâng, tôi sẽ tham dự' },
@@ -95,6 +97,13 @@ export default function Wishes() {
         }
     ]);
 
+    // Chia danh sách lời chúc thành 2 hàng
+    useEffect(() => {
+        const half = Math.ceil(wishes.length / 2);
+        setWishesFirstRow(wishes.slice(0, half));
+        setWishesSecondRow(wishes.slice(half));
+    }, [wishes]);
+
     const handleSubmitWish = async (e) => {
         e.preventDefault();
         if (!newWish.trim()) return;
@@ -129,6 +138,65 @@ export default function Wishes() {
                 return null;
         }
     };
+
+    // Component hiển thị lời chúc
+    const WishCard = ({ wish, index }) => (
+        <motion.div
+            key={wish.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ delay: index * 0.1 }}
+            className="group relative w-[280px]"
+        >
+            {/* Background gradient */}
+            <div className="absolute inset-0 bg-gradient-to-r from-rose-100/50 to-pink-100/50 rounded-xl transform transition-transform group-hover:scale-[1.02] duration-300" />
+
+            {/* Card content */}
+            <div className="relative backdrop-blur-sm bg-white/80 p-4 rounded-xl border border-rose-100/50 shadow-md h-[160px] flex flex-col">
+                {/* Header */}
+                <div className="flex items-start space-x-3 mb-2">
+                    {/* Avatar */}
+                    <div className="flex-shrink-0">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-r from-rose-400 to-pink-400 flex items-center justify-center text-white text-sm font-medium">
+                            {wish.name[0].toUpperCase()}
+                        </div>
+                    </div>
+
+                    {/* Name, Time, and Attendance */}
+                    <div className="flex-1 min-w-0">
+                        <div className="flex items-center space-x-2">
+                            <h4 className="font-medium text-gray-800 text-sm truncate">
+                                {wish.name}
+                            </h4>
+                            {getAttendanceIcon(wish.attending)}
+                        </div>
+                        <div className="flex items-center space-x-1 text-gray-500 text-xs">
+                            <Clock className="w-3 h-3" />
+                            <time className="truncate">
+                                {formatEventDate(wish.timestamp)}
+                            </time>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Message */}
+                <p className="text-gray-600 text-sm leading-relaxed mb-2 flex-grow flex items-center">
+                    {wish.message}
+                </p>
+
+                {/* Optional: Time indicator for recent messages */}
+                {Date.now() - new Date(wish.timestamp).getTime() < 3600000 && (
+                    <div className="absolute top-2 right-2">
+                        <span className="px-2 py-1 rounded-full bg-rose-100 text-rose-600 text-xs font-medium">
+                            Mới
+                        </span>
+                    </div>
+                )}
+            </div>
+        </motion.div>
+    );
+
     return (<>
         <section id="wishes" className="min-h-screen relative overflow-hidden">
             {showConfetti && <Confetti recycle={false} numberOfPieces={200} />}
@@ -171,69 +239,31 @@ export default function Wishes() {
                     </motion.div>
                 </motion.div>
 
-                {/* Wishes List */}
+                {/* Wishes List - Hai hàng lời chúc */}
                 <div className="max-w-2xl mx-auto space-y-6">
                     <AnimatePresence>
-                        <Marquee speed={20}
-                            gradient={false}
-                            className="[--duration:20s] py-2">
-                            {wishes.map((wish, index) => (
-                                <motion.div
-                                    key={wish.id}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -20 }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="group relative w-[280px]"
-                                >
-                                    {/* Background gradient */}
-                                    <div className="absolute inset-0 bg-gradient-to-r from-rose-100/50 to-pink-100/50 rounded-xl transform transition-transform group-hover:scale-[1.02] duration-300" />
-
-                                    {/* Card content */}
-                                    <div className="relative backdrop-blur-sm bg-white/80 p-4 rounded-xl border border-rose-100/50 shadow-md h-[160px] flex flex-col">
-                                        {/* Header */}
-                                        <div className="flex items-start space-x-3 mb-2">
-                                            {/* Avatar */}
-                                            <div className="flex-shrink-0">
-                                                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-rose-400 to-pink-400 flex items-center justify-center text-white text-sm font-medium">
-                                                    {wish.name[0].toUpperCase()}
-                                                </div>
-                                            </div>
-
-                                            {/* Name, Time, and Attendance */}
-                                            <div className="flex-1 min-w-0">
-                                                <div className="flex items-center space-x-2">
-                                                    <h4 className="font-medium text-gray-800 text-sm truncate">
-                                                        {wish.name}
-                                                    </h4>
-                                                    {getAttendanceIcon(wish.attending)}
-                                                </div>
-                                                <div className="flex items-center space-x-1 text-gray-500 text-xs">
-                                                    <Clock className="w-3 h-3" />
-                                                    <time className="truncate">
-                                                        {formatEventDate(wish.timestamp)}
-                                                    </time>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Message */}
-                                        <p className="text-gray-600 text-sm leading-relaxed mb-2 flex-grow flex items-center">
-                                            {wish.message}
-                                        </p>
-
-                                        {/* Optional: Time indicator for recent messages */}
-                                        {Date.now() - new Date(wish.timestamp).getTime() < 3600000 && (
-                                            <div className="absolute top-2 right-2">
-                                                <span className="px-2 py-1 rounded-full bg-rose-100 text-rose-600 text-xs font-medium">
-                                                    Mới
-                                                </span>
-                                            </div>
-                                        )}
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </Marquee>
+                        {/* Hàng 1: Từ trái sang phải */}
+                        <div className="mb-4">
+                            <Marquee speed={20}
+                                gradient={false}
+                                className="[--duration:20s] py-2">
+                                {wishesFirstRow.map((wish, index) => (
+                                    <WishCard key={wish.id} wish={wish} index={index} />
+                                ))}
+                            </Marquee>
+                        </div>
+                        
+                        {/* Hàng 2: Từ phải sang trái */}
+                        <div>
+                            <Marquee speed={20}
+                                reverse={true}
+                                gradient={false}
+                                className="[--duration:20s] py-2">
+                                {wishesSecondRow.map((wish, index) => (
+                                    <WishCard key={wish.id} wish={wish} index={index} />
+                                ))}
+                            </Marquee>
+                        </div>
                     </AnimatePresence>
                 </div>
                 {/* Wishes Form */}
