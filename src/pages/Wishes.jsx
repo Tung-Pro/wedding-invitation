@@ -183,7 +183,7 @@ export default function Wishes() {
                                     <div className="absolute inset-0 bg-gradient-to-r from-rose-100/50 to-pink-100/50 rounded-xl transform transition-transform group-hover:scale-[1.02] duration-300" />
 
                                     {/* Card content */}
-                                    <div className="relative backdrop-blur-sm bg-white/80 p-4 rounded-xl border border-rose-100/50 shadow-md">
+                                    <div className="relative backdrop-blur-sm bg-white/80 p-4 rounded-xl border border-rose-100/50 shadow-md h-[160px] flex flex-col">
                                         {/* Header */}
                                         <div className="flex items-start space-x-3 mb-2">
                                             {/* Avatar */}
@@ -211,7 +211,7 @@ export default function Wishes() {
                                         </div>
 
                                         {/* Message */}
-                                        <p className="text-gray-600 text-sm leading-relaxed mb-2 line-clamp-3">
+                                        <p className="text-gray-600 text-sm leading-relaxed mb-2 flex-grow flex items-center">
                                             {wish.message}
                                         </p>
 
