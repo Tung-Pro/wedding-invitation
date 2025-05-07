@@ -40,7 +40,7 @@ export default function Wishes() {
         {
             "id": 2,
             "name": "Nguyễn Phi Long",
-            "message": "Chúc anh chị một hành trình hôn nhân ngập tràn niềm vui, mãi mãi bền vững và hạnh phúc! ❤️",
+            "message": "Chúc anh chị một hành trình hôn nhân ngập tràn niềm vui, mãi mãi bền vững và hạnh phúc!❤️",
             "timestamp": "2025-05-01T11:00:00Z",
             "attending": "attending"
         },
