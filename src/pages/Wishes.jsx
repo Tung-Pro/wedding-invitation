@@ -32,30 +32,30 @@ export default function Wishes() {
     const [wishes, setWishes] = useState([
         {
             "id": 1,
+            "name": "Nguyễn Thái Sơn",
+            "message": "Chúc a/c 100 năm hạnh phúc 8386 phát lộc phát tài😁",
+            "timestamp": "2025-05-07T13:00:00Z",
+            "attending": "attending"
+        },
+        {
+            "id": 2,
             "name": "Nguyễn Văn Tùng",
             "message": "Anh trai à, chúc anh và chị dâu trăm năm hạnh phúc, luôn yêu thương và đồng hành cùng nhau! 🎉",
             "timestamp": "2025-05-01T10:00:00Z",
             "attending": "attending"
         },
         {
-            "id": 2,
+            "id": 3,
             "name": "Nguyễn Phi Long",
             "message": "Chúc anh chị một hành trình hôn nhân ngập tràn niềm vui, mãi mãi bền vững và hạnh phúc!❤️",
             "timestamp": "2025-05-01T11:00:00Z",
             "attending": "attending"
         },
         {
-            "id": 3,
+            "id": 4,
             "name": "Nguyễn Thành Nam",
             "message": "Ông bạn thân, chúc mày và cô dâu một đời viên mãn, luôn cười tươi và hạnh phúc nhé! 🎈",
             "timestamp": "2025-05-01T12:00:00Z",
-            "attending": "attending"
-        },
-        {
-            "id": 4,
-            "name": "Nguyễn Thái Sơn",
-            "message": "Chúc a/c 100 năm hạnh phúc 8386 phát lộc phát tài😁",
-            "timestamp": "2025-05-01T13:00:00Z",
             "attending": "attending"
         },
         {
